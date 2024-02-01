@@ -1,0 +1,45 @@
+
+server:
+  address: localhost
+  port: 8070
+  servlet:
+    context-path: /api
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: jimmy0
+    url: jdbc:mysql://localhost:3306/sework_api?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Seoul&rewriteBatchedStatements=true
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        #        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: true
+        jdbc:
+          time_zone: Asia/Seoul
+          lob:
+            non_contextual_creation: true
+        default_batch_fetch_size: 100
+    show-sql: true
+    open-in-view: false
+  logging:
+    level:
+      root: INFO
+      org:
+        springframework:
+          web:
+            client: INFO
+          boot:
+            autoconfigure: INFO
+        hibernate: ERROR
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: one
+
+
