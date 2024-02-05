@@ -13,6 +13,7 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import com.example.springkafkatestpubtest.properties.KafkaProperties;
 
@@ -34,7 +35,18 @@ public class KafkaProducerConfig {
         configProps.put(
                 ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
                 StringSerializer.class);
-        return new DefaultKafkaProducerFactory<>(configProps);
+        configProps.put(
+            ProducerConfig.ACKS_CONFIG,
+            "all");
+        configProps.put(
+            ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG,
+            "true");
+
+        DefaultKafkaProducerFactory<String, Object> producerFactory = new DefaultKafkaProducerFactory<>(configProps);
+
+        producerFactory.setTransactionIdPrefix("tx-");
+
+        return producerFactory;
     }
 
     @Bean
