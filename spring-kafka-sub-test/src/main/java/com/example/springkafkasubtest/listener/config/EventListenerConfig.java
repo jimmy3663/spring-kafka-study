@@ -5,14 +5,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
-import com.example.springkafkasubtest.listener.EventListener;
-import com.example.springkafkasubtest.listener.impl.KafkaEventListener;
+import com.example.springkafkasubtest.listener.UserEventListener;
+import com.example.springkafkasubtest.listener.impl.KafkaUserEventListener;
+import com.example.springkafkasubtest.policyhandler.UserPolicyHandler;
 
 @Configuration
 @RequiredArgsConstructor
 public class EventListenerConfig {
+    private final UserPolicyHandler userPolicyHandler;
     @Bean
-    public EventListener eventListener() {
-        return new KafkaEventListener();
+    public UserEventListener eventListener() {
+        return new KafkaUserEventListener(this.userPolicyHandler);
     }
 }

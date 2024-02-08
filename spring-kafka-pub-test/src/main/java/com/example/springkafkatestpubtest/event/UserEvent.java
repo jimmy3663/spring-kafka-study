@@ -11,8 +11,8 @@ public class UserEvent extends AbstractEvent {
 	private String name;
 	private Integer age;
 
-	public UserEvent() {
-		super();
+	public UserEvent(String key) {
+		super(key);
 	}
 
 	public static UserEvent ofCreate(
@@ -20,8 +20,22 @@ public class UserEvent extends AbstractEvent {
 		String name,
 		Integer age
 	) {
-		UserEvent userEvent = new UserEvent();
+		UserEvent userEvent = new UserEvent(Long.toString(userId));
 		userEvent.userEventType = UserEventType.CREATE;
+		userEvent.userId = userId;
+		userEvent.name = name;
+		userEvent.age = age;
+
+		return userEvent;
+	}
+
+	public static UserEvent ofUpdate(
+		Long userId,
+		String name,
+		Integer age
+	) {
+		UserEvent userEvent = new UserEvent(Long.toString(userId));
+		userEvent.userEventType = UserEventType.UPDATE;
 		userEvent.userId = userId;
 		userEvent.name = name;
 		userEvent.age = age;

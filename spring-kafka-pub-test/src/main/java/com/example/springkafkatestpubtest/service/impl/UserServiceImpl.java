@@ -31,6 +31,12 @@ public class UserServiceImpl implements UserService {
 		));
 	}
 
+	/**
+	 * Exception 발생 시 kafka rollback 테스트
+	 *
+	 * @param name
+	 * @param age
+	 */
 	@Override
 	@Transactional
 	public void saveUserWithException(String name, Integer age) {
@@ -46,5 +52,22 @@ public class UserServiceImpl implements UserService {
 		));
 
 		throw new RuntimeException("Exception on purpose!");
+	}
+
+	@Override
+	@Transactional
+	public void updateUser(Long id, String name, Integer age) {
+		User user = this.userRepository.findById(id)
+			.orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+		user.update(name, age);
+
+		this.eventPublisher.publish(UserEvent.ofUpdate(
+			user.getId(),
+			user.getName(),
+			user.getAge()
+		));
+
+		this.userRepository.save(user);
 	}
 }

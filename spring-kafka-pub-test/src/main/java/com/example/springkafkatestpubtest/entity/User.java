@@ -40,4 +40,12 @@ public class User {
 			.age(age)
 			.build();
 	}
+
+	public void update(
+		String name,
+		Integer age) {
+		this.name = name;
+		this.age = age;
+	}
+
 }

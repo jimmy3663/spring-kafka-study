@@ -1,11 +1,14 @@
 package com.example.springkafkatestpubtest.controller;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springkafkatestpubtest.model.dto.SaveUserRequest;
+import com.example.springkafkatestpubtest.model.dto.UpdateUserRequest;
 import com.example.springkafkatestpubtest.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,4 +30,12 @@ public class UserController {
 
 		this.userService.saveUserWithException(request.getName(), request.getAge());
 	}
+
+	@PutMapping(value = "/{userId}")
+	public void updateUser(@PathVariable Long userId,
+		@RequestBody UpdateUserRequest request) {
+
+		this.userService.updateUser(userId, request.getName(), request.getAge());
+	}
+
 }
