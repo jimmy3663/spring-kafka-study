@@ -13,6 +13,6 @@ public class TestService {
     private final EventPublisher eventPublisher;
 
     public void pub(String message) {
-        this.eventPublisher.publish(TestEvent.of(message));
+        // this.eventPublisher.publish(TestEvent.of(message));
     }
 }

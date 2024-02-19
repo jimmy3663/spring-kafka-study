@@ -1,7 +1,8 @@
 package com.example.springkafkatestpubtest.publisher;
 
+import com.example.springkafkatestpubtest.event.AbstractEvent;
 import com.example.springkafkatestpubtest.event.TestEvent;
 
 public interface EventPublisher {
-    void publish(TestEvent event);
+    void publish(AbstractEvent event);
 }

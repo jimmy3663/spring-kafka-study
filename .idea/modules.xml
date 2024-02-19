@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/spring-kafka-study.iml" filepath="$PROJECT_DIR$/.idea/spring-kafka-study.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-kafka-sub-test.main.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-kafka-sub-test.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-kafka-test-pub-test.main.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-kafka-test-pub-test.main.iml" />
     </modules>
